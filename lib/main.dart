@@ -165,12 +165,23 @@ class NewRouter extends StatelessWidget{
       appBar: AppBar(
         title: Text('新页面',style: TextStyle(color: Colors.white),),
       ),
-      body: Column(
+      body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text("欢迎您，"+args),
-          RandomWordsWidget(),
-          Image.asset('assets/my_img.jpg'),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("欢迎您，"+args),
+              RandomWordsWidget(),
+              Image(
+                  image: NetworkImage(
+                      "https://cdn.jsdelivr.net/gh/flutterchina/flutter-in-action@1.0/docs/imgs/image-20180829174100598.png"),
+                  width: 100.0,
+                color: Colors.red,
+                colorBlendMode: BlendMode.screen,
+              ),
+            ],
+          ),
         ],
       ),
     );

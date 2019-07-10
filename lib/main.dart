@@ -1,4 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart';
+//import 'dart:async' show Future;
+//import 'package:flutter/services.dart' show rootBundle;
+
+
+//Future<String> loadAsset() async {
+//  return await rootBundle.loadString("assets/config.json");
+//}
+
+
+
 void main() => runApp(MyApp());
 
 
@@ -67,7 +78,9 @@ class _MyHomePageState extends State<MyHomePage>{
               },
               textColor: Colors.blue,
               child: Text("点击跳转"),
-            )
+            ),
+            RandomWordsWidget(),
+            Image.asset('assets/my_img.jpg'),
           ],
         ),
       ),
@@ -97,6 +110,21 @@ class NewRouter extends StatelessWidget{
       body: Center(
         child: Text("欢迎您，"+args),
       ),
+    );
+  }
+
+}
+
+
+
+class RandomWordsWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    final wordPair = new WordPair.random();
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(wordPair.toString()),
     );
   }
 

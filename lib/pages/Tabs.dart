@@ -1,30 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:xd_flutter/IndexPage.dart';
-import 'package:xd_flutter/MinePage.dart';
-import 'package:xd_flutter/StoryPage.dart';
-import 'package:xd_flutter/ClubPage.dart';
+import "./IndexPage.dart";
+import './MinePage.dart';
+import './StoryPage.dart';
+import './ClubPage.dart';
+class Tabs extends StatefulWidget {
 
-class MainPage extends StatefulWidget {
-
-  MainPage({Key key, this.title}) : super(key: key);
+  Tabs({Key key, this.title="首页"}) : super(key: key);
 
   final String title;
 
-
   @override
-  _MainPageState createState() => new _MainPageState();
-
+  _TabsState createState() => _TabsState();
 }
 
-class _MainPageState extends State<MainPage>{
-  _MainPageState();
-
-  @override
-  void initState() {
-    ///初始化，这个函数在生命周期中只调用一次
-    super.initState();
-  }
-
+class _TabsState extends State<Tabs> {
   @override
   Widget build(BuildContext context) {
     //构建页面
@@ -32,7 +21,7 @@ class _MainPageState extends State<MainPage>{
   }
 
   //当前显示页面的
-  int currentIndex = 0;
+  int _currentIndex = 0;
   //点击导航项是要显示的页面
   final pages = [
     IndexPage(),
@@ -47,7 +36,7 @@ class _MainPageState extends State<MainPage>{
         child: Scaffold(
           //对应的页面
           body:IndexedStack(
-            index: currentIndex,
+            index: _currentIndex,
             children: pages,
           ),
           appBar: AppBar(title: const Text('首页',style: TextStyle(color: Colors.white),),centerTitle: true,),
@@ -73,11 +62,11 @@ class _MainPageState extends State<MainPage>{
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                buildBotomItem(currentIndex, 0, Icons.home, "首页"),
-                buildBotomItem(currentIndex, 1, Icons.list, "列表"),
-                buildBotomItem(currentIndex, -1, null, "发现"),
-                buildBotomItem(currentIndex, 2, Icons.cloud_circle, "树圈"),
-                buildBotomItem(currentIndex, 3, Icons.person, "我的"),
+                buildBotomItem(_currentIndex, 0, Icons.home, "首页"),
+                buildBotomItem(_currentIndex, 1, Icons.list, "列表"),
+                buildBotomItem(_currentIndex, -1, null, "发现"),
+                buildBotomItem(_currentIndex, 2, Icons.cloud_circle, "树圈"),
+                buildBotomItem(_currentIndex, 3, Icons.person, "我的"),
               ],
             ),
           ),
@@ -135,9 +124,9 @@ class _MainPageState extends State<MainPage>{
       flex: 1,
       child: new GestureDetector(
         onTap: () {
-          if (index != currentIndex) {
+          if (index != _currentIndex) {
             setState(() {
-              currentIndex = index;
+              _currentIndex = index;
             });
           }
         },//发生双击时间后回调
@@ -150,3 +139,4 @@ class _MainPageState extends State<MainPage>{
     return item;
   }
 }
+
